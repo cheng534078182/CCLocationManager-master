@@ -16,17 +16,13 @@
  
  */
 
-#define IS_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
 #define IS_IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
 
 #import "ViewController.h"
 #import "CCLocationManager.h"
 
 
-@interface ViewController ()<CLLocationManagerDelegate>{
-    CLLocationManager *locationmanager;
-
-}
+@interface ViewController ()
 @property(nonatomic,strong)UILabel *textLabel;
 
 @end
@@ -35,16 +31,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    if (IS_IOS8) {
-        [UIApplication sharedApplication].idleTimerDisabled = TRUE;
-        locationmanager = [[CLLocationManager alloc] init];
-        [locationmanager requestAlwaysAuthorization];        //NSLocationAlwaysUsageDescription
-        [locationmanager requestWhenInUseAuthorization];     //NSLocationWhenInUseDescription
-        locationmanager.delegate = self;
-    }
-    
-
     [self createButton];
     
 }
@@ -99,10 +85,8 @@
     if (IS_IOS8) {
         
         [[CCLocationManager shareLocation] getLocationCoordinate:^(CLLocationCoordinate2D locationCorrrdinate) {
-            
             NSLog(@"%f %f",locationCorrrdinate.latitude,locationCorrrdinate.longitude);
             [wself setLabelText:[NSString stringWithFormat:@"%f %f",locationCorrrdinate.latitude,locationCorrrdinate.longitude]];
-
         }];
     }
     
