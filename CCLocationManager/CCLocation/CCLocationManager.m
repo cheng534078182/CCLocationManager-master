@@ -95,8 +95,10 @@
              _lastCity = placemark.locality;
              [standard setObject:_lastCity forKey:CCLastCity];//省市地址
              NSLog(@"______%@",_lastCity);
-             _lastAddress = placemark.name;
+             NSArray * arr = [placemark.addressDictionary objectForKey:@"FormattedAddressLines"];
+             _lastAddress = arr[0];
              NSLog(@"______%@",_lastAddress);
+
          }
          if (_cityBlock) {
              _cityBlock(_lastCity);
