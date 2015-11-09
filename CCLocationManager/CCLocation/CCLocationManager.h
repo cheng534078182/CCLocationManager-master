@@ -4,7 +4,7 @@
 //
 //  Created by WangZeKeJi on 14-12-10.
 //  Copyright (c) 2014年 Chen Yaoqiang. All rights reserved.
-//
+//  Edited By CrazyPeter on 2015.11.9
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
@@ -36,7 +36,7 @@ typedef void(^NSStringBlock)(NSString *addressString);
  *
  *  @param locaiontBlock locaiontBlock description
  */
-- (void) getLocationCoordinate:(LocationBlock) locaiontBlock ;
+- (void) getLocationCoordinate:(LocationBlock) locaiontBlock andErrorBlock:(LocationErrorBlock)errorBlock;
 
 /**
  *  获取坐标和详细地址
@@ -44,29 +44,21 @@ typedef void(^NSStringBlock)(NSString *addressString);
  *  @param locaiontBlock locaiontBlock description
  *  @param addressBlock  addressBlock description
  */
-- (void) getLocationCoordinate:(LocationBlock) locaiontBlock  withAddress:(NSStringBlock) addressBlock;
+- (void) getLocationCoordinate:(LocationBlock) locaiontBlock  withAddress:(NSStringBlock) addressBlock andErrorBlock:(LocationErrorBlock)errorBlock;
 
 /**
  *  获取详细地址
  *
  *  @param addressBlock addressBlock description
  */
-- (void) getAddress:(NSStringBlock)addressBlock;
+- (void) getAddress:(NSStringBlock)addressBlock andErrorBlock:(LocationErrorBlock)errorBlock;
 
 /**
  *  获取城市
  *
  *  @param cityBlock cityBlock description
  */
-- (void) getCity:(NSStringBlock)cityBlock;
-
-///**
-// *  获取城市和定位失败
-// *
-// *  @param cityBlock  cityBlock description
-// *  @param errorBlock errorBlock description
-// */
-//- (void) getCity:(NSStringBlock)cityBlock error:(LocationErrorBlock) errorBlock;
+- (void) getCity:(NSStringBlock)cityBlock andErrorBlock:(LocationErrorBlock)errorBlock;
 
 
 
