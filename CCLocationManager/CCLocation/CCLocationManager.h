@@ -4,7 +4,7 @@
 //
 //  Created by WangZeKeJi on 14-12-10.
 //  Copyright (c) 2014年 Chen Yaoqiang. All rights reserved.
-//  Edited By CrazyPeter on 2015.11.9
+//
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>

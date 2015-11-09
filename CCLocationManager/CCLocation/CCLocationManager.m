@@ -46,29 +46,35 @@
     }
     return self;
 }
+
 //获取经纬度
-- (void) getLocationCoordinate:(LocationBlock) locaiontBlock
+- (void) getLocationCoordinate:(LocationBlock) locaiontBlock andErrorBlock:(LocationErrorBlock)errorBlock
 {
     self.locationBlock = [locaiontBlock copy];
+    self.errorBlock = [errorBlock copy];
     [self startLocation];
 }
 
-- (void) getLocationCoordinate:(LocationBlock) locaiontBlock  withAddress:(NSStringBlock) addressBlock
+- (void) getLocationCoordinate:(LocationBlock) locaiontBlock  withAddress:(NSStringBlock) addressBlock andErrorBlock:(LocationErrorBlock)errorBlock
 {
     self.locationBlock = [locaiontBlock copy];
     self.addressBlock = [addressBlock copy];
+    self.errorBlock = [errorBlock copy];
     [self startLocation];
 }
 
-- (void) getAddress:(NSStringBlock)addressBlock
+- (void) getAddress:(NSStringBlock)addressBlock andErrorBlock:(LocationErrorBlock)errorBlock
 {
     self.addressBlock = [addressBlock copy];
+    self.errorBlock = [errorBlock copy];
     [self startLocation];
 }
+
 //获取省市
-- (void) getCity:(NSStringBlock)cityBlock
+- (void) getCity:(NSStringBlock)cityBlock andErrorBlock:(LocationErrorBlock)errorBlock
 {
     self.cityBlock = [cityBlock copy];
+    self.errorBlock = [errorBlock copy];
     [self startLocation];
 }
 
@@ -78,6 +84,7 @@
 //    self.errorBlock = [errorBlock copy];
 //    [self startLocation];
 //}
+
 #pragma mark CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
@@ -145,12 +152,15 @@
     {
         UIAlertView *alvertView=[[UIAlertView alloc]initWithTitle:@"提示" message:@"需要开启定位服务,请到设置->隐私,打开定位服务" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alvertView show];
-        
     }
     
 }
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error{
+    if(self.errorBlock != nil) {
+        self.errorBlock(error);
+        self.errorBlock = nil;
+    }
     [self stopLocation];
 
 }

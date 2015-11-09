@@ -4,7 +4,7 @@
 //
 //  Created by 程朋 on 14/12/31.
 //  Copyright (c) 2014年 WangZeKeJi. All rights reserved.
-//  Edited By CrazyPeter on 2015.11.9
+//
 
 /*集成说明：
  
