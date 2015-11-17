@@ -87,6 +87,9 @@
         [[CCLocationManager shareLocation] getLocationCoordinate:^(CLLocationCoordinate2D locationCorrrdinate) {
             NSLog(@"%f %f",locationCorrrdinate.latitude,locationCorrrdinate.longitude);
             [wself setLabelText:[NSString stringWithFormat:@"%f %f",locationCorrrdinate.latitude,locationCorrrdinate.longitude]];
+        }andErrorBlock:^(NSError *error) {
+            NSLog(@"NSError - error - %@",error);
+
         }];
     }
     
@@ -102,6 +105,8 @@
             NSLog(@"%@",cityString);
             [wself setLabelText:cityString];
             
+        }andErrorBlock:^(NSError *error) {
+            NSLog(@"NSError - error - %@",error);
         }];
 
     }
@@ -123,6 +128,9 @@
         NSLog(@"%@",addressString);
         string = [NSString stringWithFormat:@"%@\n%@",string,addressString];
         [wself setLabelText:string];
+
+    }andErrorBlock:^(NSError *error) {
+        NSLog(@"NSError - error - %@",error);
 
     }];
     }
